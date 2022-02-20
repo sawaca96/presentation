@@ -4,6 +4,7 @@ lineNumbers: false
 drawings:
   persist: false
 layout: intro
+download: true
 ---
 
 # 디자인 패턴
