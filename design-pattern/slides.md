@@ -5,6 +5,7 @@ drawings:
   persist: false
 layout: intro
 download: true
+title: 디자인 패턴
 ---
 
 # 디자인 패턴
@@ -259,7 +260,7 @@ if __name__ == "__main__":
 팩토리 메소드 패턴은 creator와 product가 존재 하는데 creator가 product를 조합한 형태의 객체를 생성하게 됩니다 
 -->
 
---- 
+---
 
 
 # 예제 - 팩토리 메소드 패턴
@@ -441,7 +442,7 @@ def get_pizza_factory(factory_type):
     elif factory_type == "costco":
         return ()
 
-class PizzaFactory:
+class PizzaStore:
     def makePizza(self):
         factory = get_pizza_factory("domino")
         domino_shrimp = factory.create_shrimp_pizza()
@@ -945,7 +946,7 @@ layout: center
   <img src="https://refactoring.guru/images/patterns/diagrams/template-method/structure-2x.png">
 </div>
 
-<!--  
+<!--
 예를 들면 차를 끓이는 알고리즘과 커피를 끓이는 알고리즘과 같은 경우입니다. 
 
 이렇게 하면 코드 중복을 줄일 수 있습니다.
@@ -1188,11 +1189,13 @@ if __name__ == "__main__":
 }
 </style>
 
-<!-- 
+<!--
 주식거래를 생각해 봅시다. 
 명령어로는 매수와 매도가 존재합니다. 매수와 매도는 StockTrade를 통해 실제 매수/매도를 진행하게 됩니다.
 Agent invoker는 명령어를 담고 실행할 수 있게 해줍니다.
-여기서 Receiver는 StockTrade Invoker가 Agent Command는 Order입니다. 
+여기서 Receiver는 StockTrade Invoker가 Agent Command는 Order입니다.
+
+처음엔 왜 receiver가 필요할까 했지만 비지니스 로직과 분리한 채로 커맨드의 추가가 용이하게 하려면 receiver를 통해서 의존도를 낮추는것이 좋은것 같습니다.
 -->
 
 ---
@@ -1347,7 +1350,6 @@ if __name__ == "__main__":
 <br>
 
 ###### 커맨드 패턴과 차이점
-- 커맨드 패턴은 '어떻게'를 다루고 / 전략 패턴은 '무엇'을 다룬다
 - 커맨드 패턴은 작업을 객체화 해서 defer execution, store hisotry와 같은 기능을 구현한다
 - 전략 패턴은 같은것을 다른 방법으로 진행할 때 사용한다
 </div>
@@ -1369,7 +1371,12 @@ if __name__ == "__main__":
 
 </div>
 
-<!-- 체육시간에 농구 축구 야구중 무엇을 할지 정하는것은 전략 패턴이고 축구를 하는데 패스할지 슛할지 태클을 할지 정하는것은 커맨트 패턴이라고 생각하시면 될 것 같습니다 -->
+<!-- 
+전략패턴의 경우 검색을 하는 방법에 대한 변경과 같이 
+알로기즘 변경이 이루어질때 알고리즘을 추상화해서 사용하고
+
+커맨트 패턴의 경우 명령을 추상화 할 떄 사용합니다.
+-->
 
 ---
 layout: center
@@ -1390,7 +1397,7 @@ layout: center
 
 - 상태에 따라 알고리즘이 변경 될 때 
 - 객체의 상태가 서로 영향을 받을 때
-- 객체 상태에 대한 고츅이 유한하고 미리 정해져 있을 때
+- 객체 상태가 유한하고 미리 정해져 있을 때
 </div>
 
 <!-- 라디오의 AM/FM 채널을 선택하는 상황이 상태 패턴이라고 볼 수 있습니다. 객체가 갖는 상태가 정해져 있고 상태에 따라 하는 행위가 변경되는 경우입니다. -->
